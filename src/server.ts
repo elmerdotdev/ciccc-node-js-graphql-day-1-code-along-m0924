@@ -47,7 +47,8 @@ const typeDefs = `#graphql
     products: [Product],
     orders: [Order],
     customerById(customerId: ID): Customer,
-    productById(productId: ID): Product
+    productById(productId: ID): Product,
+    hello: String
   }
 `
 
@@ -60,7 +61,8 @@ const resolvers = {
     customerById: (_: unknown, { customerId } : { customerId: string }) =>
       customersData.find(customer => customer.id === customerId),
     productById: (_: unknown, { productId }: { productId: string }) =>
-      productsData.find(product => product.id === productId)
+      productsData.find(product => product.id === productId),
+    hello: () => "Hello world!"
   },
   Order: {
     customer: (parent: { customerId: string }) =>
